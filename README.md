@@ -47,9 +47,6 @@ MusicStreamingProject
 ├── SongDAO.java
 └── Main.java
 
-
----
-
 ## **Technologies Used**
 - HTML  
 - CSS  
@@ -58,16 +55,11 @@ MusicStreamingProject
 - JDBC (MySQL)  
 - GitHub  
 
----
-
 ##  **Data Validation & Error Handling**
 - Validates audio file availability  
 - Handles missing file errors  
 - Prevents script from crashing  
 - Ensures event listeners run safely  
-
----
-
 ##  **How to Run**
 ### **Web Project:**
 1. Download the project  
@@ -80,9 +72,7 @@ MusicStreamingProject
 2. Run **Main.java**  
 3. Connection message will print  
 
----
-
-# 🔮 **Future Enhancements**
+# **Future Enhancements**
 - Search bar  
 - Playlist save feature  
 - Volume control  

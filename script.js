@@ -1,7 +1,8 @@
 console.log("Music Player Loaded");
 
 // Select elements
-let audioElement = new Audio("songs/1.mp3");
+let audioElement = new Audio();
+loadSong(songIndex);
 let progressBar = document.getElementById("myProgressBar");
 let playButton = document.getElementById("masterPlay");
 let nextButton = document.getElementById("next");
@@ -14,7 +15,7 @@ let songs = [
     { songName: "Song 1", filePath: "songs/1.mp3", coverPath: "covers/1.jpg" },
     { songName: "Song 2", filePath: "songs/2.mp3", coverPath: "covers/2.jpg" },
     { songName: "Song 3", filePath: "songs/3.mp3", coverPath: "covers/3.jpg" },
-    { songName: "Song 4", filePath: "songs/4.jpg", coverPath: "covers/4.jpg" },
+    { songName: "Song 4", filePath: "songs/4.mp3", coverPath: "covers/4.jpg" },
     { songName: "Song 5", filePath: "songs/5.mp3", coverPath: "covers/5.jpg" },
 ];
 
@@ -59,14 +60,20 @@ songItems.forEach((element, i) => {
         songIndex = i;
         loadSong(songIndex);
         audioElement.play();
+
+        playButton.classList.remove("fa-play-circle");
+        playButton.classList.add("fa-pause-circle");
     });
 });
 
-// Update progress bar
+
 audioElement.addEventListener("timeupdate", () => {
-    let progress = parseInt((audioElement.currentTime / audioElement.duration) * 100);
-    progressBar.value = progress;
+    if (!isNaN(audioElement.duration)) {
+        progressBar.value =
+            (audioElement.currentTime / audioElement.duration) * 100;
+    }
 });
+
 
 // Seek functionality
 progressBar.addEventListener("change", () => {
@@ -91,3 +98,4 @@ prevButton.addEventListener("click", () => {
 audioElement.addEventListener("error", () => {
     alert("Cannot load audio. Please check file path.");
 });
+

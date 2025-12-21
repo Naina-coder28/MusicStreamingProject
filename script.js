@@ -2,7 +2,6 @@ console.log("Music Player Loaded");
 
 // Select elements
 let audioElement = new Audio();
-loadSong(songIndex);
 let progressBar = document.getElementById("myProgressBar");
 let playButton = document.getElementById("masterPlay");
 let nextButton = document.getElementById("next");
@@ -38,6 +37,7 @@ function loadSong(index) {
     validateAudio(audioElement.src);
     audioElement.currentTime = 0;
 }
+loadSong(songIndex);
 
 // Play/Pause functionality
 playButton.addEventListener("click", () => {
@@ -77,8 +77,12 @@ audioElement.addEventListener("timeupdate", () => {
 
 // Seek functionality
 progressBar.addEventListener("change", () => {
-    audioElement.currentTime = progressBar.value * audioElement.duration / 100;
+    if (!isNaN(audioElement.duration)) {
+        audioElement.currentTime =
+            (progressBar.value * audioElement.duration) / 100;
+    }
 });
+
 
 // Next song
 nextButton.addEventListener("click", () => {
@@ -98,4 +102,5 @@ prevButton.addEventListener("click", () => {
 audioElement.addEventListener("error", () => {
     alert("Cannot load audio. Please check file path.");
 });
+
 
